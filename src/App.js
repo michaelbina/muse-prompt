@@ -8,13 +8,13 @@ function App() {
   const [mood, setMood] = useState('');
   const [topic, setTopic] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const handlePromptClick = async () => {
     setIsLoading(true);
 
     try {
       const response = await axios.get(
-        `http://localhost:3000/creative-writing-prompt?mood=${mood}&topic=${topic}`
+        `${process.env.REACT_APP_GPT_API_DOMAIN}/creative-writing-prompt?mood=${mood}&topic=${topic}`
       );
       const data = response.data;
       setOutput(data);
@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-      <h1>Prompt Generator</h1>
+      <h1>Muse Prompt</h1>
       <div>
         <label htmlFor="mood">Mood:</label>
         <select
